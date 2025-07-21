@@ -1,0 +1,43 @@
+<component name="libraryTable">
+  <library name="mods">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/.." />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/../Adjusted Sector" />
+      <root url="file://$PROJECT_DIR$/../Adjusted Sector/src" />
+      <root url="file://$PROJECT_DIR$/../Aptly Simple Hullmods 2.1.2l/src" />
+      <root url="file://$PROJECT_DIR$/../DetailedCombatResults" />
+      <root url="file://$PROJECT_DIR$/../Domain Phase Lab" />
+      <root url="file://$PROJECT_DIR$/../FED" />
+      <root url="file://$PROJECT_DIR$/../Galactic_Constellate 1.13.7b - 0.98" />
+      <root url="file://$PROJECT_DIR$/../GraphicsLib" />
+      <root url="file://$PROJECT_DIR$/src" />
+      <root url="file://$PROJECT_DIR$/../Interstellar Imperium" />
+      <root url="file://$PROJECT_DIR$/../Iron Shell 1.183aj/data" />
+      <root url="file://$PROJECT_DIR$/../Kazeron Navarachy" />
+      <root url="file://$PROJECT_DIR$/../Leading Pip" />
+      <root url="file://$PROJECT_DIR$/../LunaLib/src" />
+      <root url="file://$PROJECT_DIR$/../MagicLib/src" />
+      <root url="file://$PROJECT_DIR$/../MoreBarMissions/src" />
+      <root url="file://$PROJECT_DIR$/../Objects Analysis 002/src" />
+      <root url="file://$PROJECT_DIR$/../Officer Extension/src" />
+      <root url="file://$PROJECT_DIR$/../Particle Engine/src" />
+      <root url="file://$PROJECT_DIR$/../QoLPack/jars/src" />
+      <root url="file://$PROJECT_DIR$/../Secrets of the Frontier 0.14.5b/jars/src" />
+      <root url="file://$PROJECT_DIR$/../Ship Mastery System/src" />
+      <root url="file://$PROJECT_DIR$/../SpeedUp" />
+      <root url="file://$PROJECT_DIR$/../Starsector-IntelliJ-Template-main/src" />
+      <root url="file://$PROJECT_DIR$/../Sunrider 0.7.4" />
+      <root url="file://$PROJECT_DIR$/../System_Marker/src" />
+      <root url="file://$PROJECT_DIR$/../Unknown Skies/src" />
+      <root url="file://$PROJECT_DIR$/../Unthemed Weapons Utilities/src" />
+      <root url="file://$PROJECT_DIR$/../VIC/jars/src" />
+      <root url="file://$PROJECT_DIR$/../WeaponArcs/jars/src" />
+      <root url="file://$PROJECT_DIR$/../WhisperTechminingAlteration" />
+      <root url="file://$PROJECT_DIR$/../tahlan-shipworks" />
+      <root url="file://$PROJECT_DIR$/../tasc/ExamplePlugin/src" />
+    </SOURCES>
+  </library>
+</component>

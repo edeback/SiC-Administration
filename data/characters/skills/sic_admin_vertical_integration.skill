@@ -1,0 +1,15 @@
+{
+	"id":"sic_admin_vertical_integration",
+	"governingAptitude":"industry",
+	"compressHullmods":false,
+	"scope":"GOVERNED_OUTPOST",
+	"effectGroups":[
+		{
+			"requiredSkillLevel":1,
+			"effectBasedOnLevel":false,
+			"effects":[
+				{"type":"CHARACTER_STATS", "script":"xepel.sic_admin.skills.administration.VerticalIntegration$VerticalIntegrationEffect"},
+			]
+		},
+	],
+}

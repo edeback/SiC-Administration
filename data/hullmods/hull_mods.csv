@@ -1,0 +1,4 @@
+name,id,tier,rarity,tech/manufacturer,tags,uiTags,base value,unlocked,hidden,hiddenEverywhere,cost_frigate,cost_dest,cost_cruiser,cost_capital,script,desc,short,sModDesc,sprite
+# Add your hullmods here. One left commented out for reference.
+# See: https://starsector.fandom.com/wiki/Hull_mods.csv
+Optimized Hull,sic_admin_optimized_hull,,,,codex_unlockable,,,,TRUE,,0,0,0,0,xepel.sic_admin.hullmods.OptimizedHull,Increases the maximum number of built-in hullmods by 1.,,,graphics/hullmods/optimized_hull.png

@@ -1,0 +1,17 @@
+{
+  "id": "xepel_sicadmin",
+  "name": "Second-in-Command Administration XO",
+  "author": "Xepel",
+  "utility": false,
+  "version": { "major": '0', "minor": '1', "patch": '0' },
+  "description": "Administration XO.",
+  "gameVersion": "0.98a-RC8",
+  "jars": [ "jars/SiC Administration.jar" ],
+  "modPlugin": "xepel.sic_admin.SiCAdministrationPlugin",
+  "dependencies": [
+    {
+        "id": "second_in_command",
+        "name": "Second-in-Command",
+    }
+  ],
+}
