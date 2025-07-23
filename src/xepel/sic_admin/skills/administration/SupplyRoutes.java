@@ -32,8 +32,6 @@ public class SupplyRoutes extends SCBaseSkillPlugin {
         tooltipMakerAPI.addPara("Your colonies keep you well-supplied and refueled.", 0f, Misc.getHighlightColor(), Misc.getHighlightColor());
         tooltipMakerAPI.addPara("Supply and fuel costs are reduced by up to 80%% depending on how close you are to a colony, " +
                 "diminishing to zero at 10 light-years.", 0f, Misc.getHighlightColor(), Misc.getHighlightColor());
-        //tooltipMakerAPI.addPara("Supply and fuel costs are reduced by up to 80%% depending on how close you are to a colony,", 0f, Misc.getHighlightColor(), Misc.getHighlightColor());
-        //tooltipMakerAPI.addPara("diminishing to zero at 10 light-years.", 0f, Misc.getHighlightColor(), Misc.getHighlightColor());
     }
 
     @Override
@@ -46,18 +44,6 @@ public class SupplyRoutes extends SCBaseSkillPlugin {
             ship.getStats().getSuppliesPerMonth().unmodifyMult(MOD_ID_FUEL);
             ship.getStats().getSuppliesPerMonth().unmodifyMult(MOD_ID_SUPPLIES);
         }
-    }
-
-    @Override
-    public void applyEffectsBeforeShipCreation(SCData data, MutableShipStatsAPI stats, ShipVariantAPI variant, ShipAPI.HullSize hullSize, String id) {
-        //float lySquared = SiCAdminCommon.lightyearsSquaredToNearestOwnedMarket(data.getFleet().getLocationInHyperspace());
-        //float maxSquared = MAX_RANGE_LY * MAX_RANGE_LY;
-        //if (lySquared < maxSquared)
-        //{
-        //    float reductionFactor = 1f - (1f - (lySquared / maxSquared)) * MAX_REDUCTION;
-        //    stats.getFuelUseMod().modifyMult(id + "_fuel", reductionFactor, "Supply Routes");
-        //    stats.getSuppliesPerMonth().modifyMult(id + "_supplies", reductionFactor, "Supply Routes");
-        //}
     }
 
     @Override
@@ -80,14 +66,5 @@ public class SupplyRoutes extends SCBaseSkillPlugin {
                 ship.getStats().getSuppliesPerMonth().unmodifyMult(MOD_ID_SUPPLIES);
             }
         }
-        //data.getFleet().getStats().addTemporaryModMult(0.1f, MOD_ID, "Supply Routes", 0.9f,
-        //        data.getFleet().getStats().getDynamic().getStat(Stats.FUEL_USE_NOT_SHOWN_ON_MAP_MULT));
-        //float lySquared = SiCAdminCommon.lightyearsSquaredToNearestOwnedMarket(data.getFleet().getLocationInHyperspace());
-        //float maxSquared = MAX_RANGE_LY * MAX_RANGE_LY;
-        //if (lySquared < maxSquared)
-        //{
-        //    float reductionFactor = (1 - lySquared / maxSquared) * MAX_REDUCTION;
-        //
-        //}
     }
 }
