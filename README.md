@@ -6,58 +6,87 @@ This adds an Administration XO to Second-in-Command. The intent is to provide a 
 
 The Admin XO is a logistics specialist with the following abilities:
 
-Innate skill:
-Multitasking
-Can personally administer two additional colonies without penalties
+*Innate skill:*
+
+**Multitasking**
+>Can personally administer two additional colonies without penalties
 
 ---
 
-Charismatic Leadership
-Affects: governed colonies
-Population growth increased by +10
-+20% accessibility
+**Charismatic Leadership**
 
-Hyperspace Buoys
-Affects: fleet
-Controlled nav buoys affect hyperspace within 10 ly
-Controlled nav buoys reduce terrain movement penalty by 50% (base) / 30% (makeshift)
+*Affects: governed colonies*
 
-Hyperspace Sensors
-Affects: fleet
-Controlled sensor relays affect hyperspace within 10 ly
-Controlled sensor relays reduce detected-at range by 50% (base) / 30% (makeshift)
+>Population growth increased by +10
+>
+>+20% accessibility
 
-Supply Routes
-Affects: fleet
-Supply and fuel costs are reduced by up to 80% depending on how close you are to a colony,
-diminishing to zero at 10 light-years.
+**Hyperspace Buoys**
 
---- (Must have 2 skills from above)
+*Affects: fleet*
 
-Business Acumen
-Affects: governed colonies
-+25% income
+>Controlled nav buoys affect hyperspace within 10 ly
+>
+>Controlled nav buoys reduce terrain movement penalty by 50% (base) / 30% (makeshift)
 
-Entrenchment
-Affects: governed colonies
-Increases ground defenses by x2
-Increases fleet size by x1.5
+**Hyperspace Sensors**
 
-Optimized Shipbuilding
-Affects: all colonies
-+50% maximum value of custom ship and weapon production per month
-+20% ship quality factionwide
-Affects: Fleet
-Able to build 1 more permanent hullmod into ships you custom produce
+*Affects: fleet*
 
---- (Must have 4 skills from above)
+>Controlled sensor relays affect hyperspace within 10 ly
+>
+>Controlled sensor relays reduce detected-at range by 50% (base) / 30% (makeshift)
 
-Vertical Integration
-Affects: governed colonies
-All industries supply 1 more unit of all the commodities they produce
-All industries demand 1 less unit of all the commodities they require
+**Supply Routes**
 
-Miniaturized Factories
-Affects: governed colonies
-+1 Industry Slot
--20% colony upkeep cost
+*Affects: fleet*
+
+>Supply and fuel costs are reduced by up to 80% depending on how close you are to a colony, diminishing to zero at 10 light-years.
+
+---
+*(Must have 2 skills from above)*
+
+**Business Acumen**
+
+*Affects: governed colonies*
+
+>+25% income
+
+**Entrenchment**
+
+*Affects: governed colonies*
+
+>Increases ground defenses by x2
+>
+>Increases fleet size by x1.5
+
+**Optimized Shipbuilding**
+
+*Affects: all colonies*
+
+>+50% maximum value of custom ship and weapon production per month
+>
+>+20% ship quality factionwide
+
+*Affects: Fleet*
+
+>Able to build 1 more permanent hullmod into ships you custom produce
+
+---
+*(Must have 4 skills from above)*
+
+**Vertical Integration**
+
+*Affects: governed colonies*
+
+>All industries supply 1 more unit of all the commodities they produce
+>
+>All industries demand 1 less unit of all the commodities they require
+
+**Miniaturized Factories**
+
+*Affects: governed colonies*
+
+>+1 Industry Slot
+>
+>-20% colony upkeep cost
