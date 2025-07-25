@@ -4,6 +4,8 @@
 
 This adds an Administration XO to Second-in-Command. The intent is to provide a colony-focused XO that provides a lot of late-game utility to players with multiple colonies. Right now SiC avoids all colony-related abilities, so this exists to fill that gap.
 
+***Requires the Second-in-Command mod (if that wasn't obvious)***
+
 The Admin XO is a logistics specialist with the following abilities:
 
 *Innate skill:*
