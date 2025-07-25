@@ -20,7 +20,7 @@
   # GitHub: https://raw.githubusercontent.com/MagicLibStarsector/MagicLib/master/magiclib.version
   # Dropbox: https://www.dropbox.com/s/rnzm1m8l8ik8a6l/modname.zip?dl=1  # Note the ?dl=1
   # Google Drive: https://drive.google.com/uc?id=1dbx-oOyFxy6l2ECLHqNtWg5kBW3lXBo7&export=download  # Note the &export=download
-  "masterVersionFile": "https://github.com/edeback/SiC-Administration/blob/main/xepel_sicadmin.version",
+  "masterVersionFile": "https://raw.githubusercontent.com/edeback/SiC-Administration/refs/heads/main/xepel_sicadmin.version",
 
   "modName": "SiC Administration XO",
 
@@ -32,7 +32,7 @@
     {
       "major": 0,
       "minor": 1,
-      "patch": 1
+      "patch": 2
     },
 
   # OPTIONAL
@@ -45,7 +45,7 @@
   # OPTIONAL
   # A download link directly to the latest version of your mod.
   # This is used by mod managers/version checkers (eg SMOL, MOSS, LunaLib) to let users quickly update/download without visiting your mod page.
-  "directDownloadURL": "https://github.com/edeback/SiC-Administration/releases/download/v0.1.1/SiC-Administration.zip",
+  "directDownloadURL": "https://github.com/edeback/SiC-Administration/releases/download/v0.1.2/SiC-Administration.zip",
 
   # OPTIONAL
   # A link to your changelog.
