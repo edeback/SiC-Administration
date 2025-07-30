@@ -53,13 +53,14 @@ public class SiCAdminCommon {
 
     public static int getLevelForBestEntityInRange(String typeTag, CampaignFleetAPI playerFleet, float maxDistLY)
     {
-        if (!playerFleet.isInHyperspace())
-        {
-            // Just check local
-            return getLevelForBestEntityInLocation(typeTag, playerFleet.getContainingLocation());
+        int level = 0;
+        if (!playerFleet.isInHyperspace()) {
+            // Check local first
+            level = getLevelForBestEntityInLocation(typeTag, playerFleet.getContainingLocation());
+            // If we're maxed out, no need to check anywhere else
+            if (level == 2) return 2;
         }
         float maxDistSquaredUnits = maxDistLY * maxDistLY * Misc.getUnitsPerLightYear() * Misc.getUnitsPerLightYear();
-        int level = 0;
         Set<LocationAPI> results = new HashSet<>();
         List<MarketAPI> allMarkets = Global.getSector().getEconomy().getMarketsCopy();
         for (MarketAPI market : allMarkets)
