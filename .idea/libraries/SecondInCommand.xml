@@ -4,8 +4,6 @@
       <root url="jar://$PROJECT_DIR$/../Second-in-Command-2.0.0/jars/SecondInCommand.jar!/" />
     </CLASSES>
     <JAVADOC />
-    <SOURCES>
-      <root url="file://$PROJECT_DIR$/../Second-in-Command-2.0.0/src" />
-    </SOURCES>
+    <SOURCES />
   </library>
 </component>

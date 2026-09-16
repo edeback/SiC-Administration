@@ -8,7 +8,7 @@
 			"requiredSkillLevel":1,
 			"effectBasedOnLevel":false,
 			"effects":[
-				{"type":"CHARACTER_STATS", "script":"xepel.sic_admin.skills.administration.VerticalIntegration$VerticalIntegrationEffect"},
+				{"type":"CHARACTER_STATS", "script":"sic_admin_xo.skills.administration.VerticalIntegration$VerticalIntegrationEffect"},
 			]
 		},
 	],
