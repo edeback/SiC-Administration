@@ -16,5 +16,6 @@
     <orderEntry type="library" exported="" name="ExerelinCore" level="project" />
     <orderEntry type="library" exported="" name="mods" level="project" />
     <orderEntry type="library" exported="" name="SecondInCommand" level="project" />
+    <orderEntry type="library" exported="" name="AoTDToolboxTheory" level="project" />
   </component>
 </module>

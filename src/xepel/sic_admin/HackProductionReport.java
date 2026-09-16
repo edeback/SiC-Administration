@@ -1,24 +1,19 @@
 package com.fs.starfarer.api.impl.campaign.intel.misc;
 
 import com.fs.starfarer.api.campaign.econ.MarketAPI;
-import com.fs.starfarer.api.impl.campaign.intel.misc.ProductionReportIntel;
 
-public class HackProductionReport extends ProductionReportIntel {
+/**
+ * ProductionReportIntel keeps everything interesting in protected fields with no getters.
+ * Declaring this class in the same package gets us package-level access to them, for any
+ * instance, without reflection.
+ */
+public class HackProductionReport {
 
-    public HackProductionReport(MarketAPI gatheringPoint, ProductionData data, int totalCost, int accrued, boolean noProductionThisMonth) {
-        super(gatheringPoint, data, totalCost, accrued, noProductionThisMonth);
+    public static ProductionReportIntel.ProductionData getProductionData(ProductionReportIntel intel) {
+        return intel.data;
     }
 
-    public HackProductionReport(ProductionReportIntel intel)
-    {
-        super(intel.gatheringPoint, intel.data, intel.totalCost, intel.accrued, intel.noProductionThisMonth);
-    }
-
-    public ProductionData getProductionData() {
-        return data;
-    }
-
-    public MarketAPI getGatheringPoint() {
-        return gatheringPoint;
+    public static MarketAPI getGatheringPoint(ProductionReportIntel intel) {
+        return intel.gatheringPoint;
     }
 }

@@ -1,6 +1,7 @@
 package xepel.sic_admin;
 
 import com.fs.starfarer.api.BaseModPlugin;
+import xepel.sic_admin.production.ProductionHooks;
 
 public class SiCAdministrationPlugin extends BaseModPlugin {
     @Override
@@ -9,6 +10,13 @@ public class SiCAdministrationPlugin extends BaseModPlugin {
 
         // Test that the .jar is loaded and working, using the most obnoxious way possible.
         //throw new RuntimeException("Template mod loaded and working!\nRemove this crash in SiCAdministrationPlugin.");
+    }
+
+    @Override
+    public void onGameLoad(boolean newGame) {
+        super.onGameLoad(newGame);
+
+        ProductionHooks.register();
     }
 
     // You can add more methods from ModPlugin here. Press Control-O in IntelliJ to see options.

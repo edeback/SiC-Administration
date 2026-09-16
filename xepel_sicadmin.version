@@ -22,7 +22,7 @@
   # Google Drive: https://drive.google.com/uc?id=1dbx-oOyFxy6l2ECLHqNtWg5kBW3lXBo7&export=download  # Note the &export=download
   "masterVersionFile": "https://raw.githubusercontent.com/edeback/SiC-Administration/refs/heads/main/xepel_sicadmin.version",
 
-  "modName": "SiC Administration XO",
+  "modName": "SiC Admin XO",
 
   # The current patch number
   # Notation is major.minor.patch, trailing zeros are ignored
@@ -31,8 +31,8 @@
   "modVersion":
     {
       "major": 0,
-      "minor": 1,
-      "patch": 5
+      "minor": 2,
+      "patch": 0
     },
 
   # OPTIONAL

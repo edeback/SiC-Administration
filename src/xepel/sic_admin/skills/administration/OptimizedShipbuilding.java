@@ -1,26 +1,15 @@
 package xepel.sic_admin.skills.administration;
 
 import com.fs.starfarer.api.Global;
-import com.fs.starfarer.api.campaign.CargoAPI;
-import com.fs.starfarer.api.campaign.FactionAPI;
-import com.fs.starfarer.api.campaign.FactionProductionAPI;
-import com.fs.starfarer.api.campaign.comm.IntelInfoPlugin;
 import com.fs.starfarer.api.campaign.econ.MarketAPI;
-import com.fs.starfarer.api.campaign.listeners.EconomyTickListener;
 import com.fs.starfarer.api.characters.MarketSkillEffect;
-import com.fs.starfarer.api.combat.ShipVariantAPI;
-import com.fs.starfarer.api.fleet.FleetMemberAPI;
 import com.fs.starfarer.api.impl.campaign.ids.Stats;
-import com.fs.starfarer.api.impl.campaign.intel.misc.HackProductionReport;
-import com.fs.starfarer.api.impl.campaign.intel.misc.ProductionReportIntel;
 import com.fs.starfarer.api.ui.TooltipMakerAPI;
 import com.fs.starfarer.api.util.Misc;
 import second_in_command.SCData;
 import second_in_command.specs.SCBaseSkillPlugin;
 
-import java.util.*;
-
-public class OptimizedShipbuilding extends SCBaseSkillPlugin implements EconomyTickListener {
+public class OptimizedShipbuilding extends SCBaseSkillPlugin {
 
     public static String MOD_ID = "sic_admin_optimized_shipbuilding";
     public static float CUSTOM_PRODUCTION_BONUS = 50f;
@@ -48,9 +37,10 @@ public class OptimizedShipbuilding extends SCBaseSkillPlugin implements EconomyT
         if (data.getCommander().isPlayer()){
             data.getCommander().getStats().getDynamic().getMod(Stats.CUSTOM_PRODUCTION_MOD).modifyMult(MOD_ID,
                     1f + CUSTOM_PRODUCTION_BONUS / 100f, "Optimized Shipbuilding");
-            data.getCommander().getStats().setSkillLevel(MOD_ID, 1);
 
-            Global.getSector().getListenerManager().addListener(this);
+            // The production hooks in xepel.sic_admin.production are registered for the whole game
+            // and use this skill level to decide whether to build the extra hullmod in.
+            data.getCommander().getStats().setSkillLevel(MOD_ID, 1);
         }
     }
 
@@ -59,33 +49,7 @@ public class OptimizedShipbuilding extends SCBaseSkillPlugin implements EconomyT
         if (data.getCommander().isPlayer()){
             data.getCommander().getStats().getDynamic().getMod(Stats.CUSTOM_PRODUCTION_MOD).unmodifyMult(MOD_ID);
             data.getCommander().getStats().setSkillLevel(MOD_ID, 0);
-
-            Global.getSector().getListenerManager().removeListener(this);
         }
-    }
-
-    @Override
-    public void reportEconomyMonthEnd() {
-        List<IntelInfoPlugin> prodIntelList = Global.getSector().getIntelManager().getIntel(ProductionReportIntel.class);
-        if (prodIntelList.size() > 0) {
-            ProductionReportIntel lastProdIntel = (ProductionReportIntel) prodIntelList.get(prodIntelList.size() - 1);
-            if (lastProdIntel != null) {
-                HackProductionReport hackReport = new HackProductionReport(lastProdIntel);
-                MarketAPI gatheringPoint = hackReport.getGatheringPoint();
-                CargoAPI local = Misc.getStorageCargo(gatheringPoint);
-                ProductionReportIntel.ProductionData productionData = hackReport.getProductionData();
-                CargoAPI cargo = productionData.getCargo("Heavy Industry - Custom Production");
-                for (FleetMemberAPI member : cargo.getMothballedShips().getMembersListCopy()) {
-                    ShipVariantAPI variant = member.getVariant();
-                    if (!variant.hasHullMod(HULLMOD_ID)) variant.addPermaMod(HULLMOD_ID);
-                }
-            }
-        }
-    }
-
-    @Override
-    public void reportEconomyTick(int iterIndex) {
-
     }
 
     public static class OptimizedShipbuildingEffect implements MarketSkillEffect {
@@ -117,4 +81,3 @@ public class OptimizedShipbuilding extends SCBaseSkillPlugin implements EconomyT
         }
     }
 }
-
