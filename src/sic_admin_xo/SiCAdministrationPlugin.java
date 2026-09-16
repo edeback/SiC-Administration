@@ -16,6 +16,10 @@ public class SiCAdministrationPlugin extends BaseModPlugin {
     public void onGameLoad(boolean newGame) {
         super.onGameLoad(newGame);
 
+        // Cached colony data belongs to the sector that produced it, and its timestamps are only
+        // meaningful against that sector's clock.
+        ColonyProximity.reset();
+
         ProductionHooks.register();
     }
 

@@ -1,13 +1,12 @@
 package sic_admin_xo.skills.administration;
 
+import com.fs.starfarer.api.campaign.CampaignFleetAPI;
 import com.fs.starfarer.api.impl.campaign.SensorArrayEntityPlugin;
-import com.fs.starfarer.api.impl.campaign.ids.Stats;
-import com.fs.starfarer.api.impl.campaign.ids.Tags;
 import com.fs.starfarer.api.ui.TooltipMakerAPI;
 import com.fs.starfarer.api.util.Misc;
 import second_in_command.SCData;
 import second_in_command.specs.SCBaseSkillPlugin;
-import sic_admin_xo.SiCAdminCommon;
+import sic_admin_xo.ColonyProximity;
 
 public class HyperspaceSensors extends SCBaseSkillPlugin {
 
@@ -38,19 +37,24 @@ public class HyperspaceSensors extends SCBaseSkillPlugin {
 
     @Override
     public void advance(SCData data, Float amunt) {
-        int level = SiCAdminCommon.getLevelForBestEntityInRange(Tags.SENSOR_ARRAY, data.getFleet(), MAX_RANGE_LY);
+        CampaignFleetAPI fleet = data.getFleet();
+        if (fleet == null) return;
+
+        int level = ColonyProximity.getBestSensorArrayLevel(fleet, MAX_RANGE_LY);
         if (level > 0) {
             String desc = ((level == 1) ? "Makeshift sensor array" : "Sensor array");
             float bonusRange = ((level == 1) ?  SensorArrayEntityPlugin.SENSOR_BONUS_MAKESHIFT :  SensorArrayEntityPlugin.SENSOR_BONUS);
             float detectedMult = ((level == 1) ? DETECTED_RANGE_MULT_MAKESHIFT : DETECTED_RANGE_MULT);
 
-            if (data.getFleet().isInHyperspace()) {
-                // Only need to apply speed in hyperspace, otherwise we'll double-add it in-system
-                data.getFleet().getStats().addTemporaryModFlat(0.1f, MOD_ID_RANGE, desc, bonusRange,
-                        data.getFleet().getStats().getSensorRangeMod());
+            if (fleet.isInHyperspace()) {
+                // Only need to apply range in hyperspace, otherwise we'll double-add it in-system.
+                // Re-applied every frame: the duration is in days, so letting it lapse would drop
+                // the bonus, and the level itself is now cached rather than rescanned.
+                fleet.getStats().addTemporaryModFlat(0.1f, MOD_ID_RANGE, desc, bonusRange,
+                        fleet.getStats().getSensorRangeMod());
             }
-            data.getFleet().getStats().addTemporaryModMult(0.1f, MOD_ID_DETECT, desc, detectedMult,
-                    data.getFleet().getStats().getDetectedRangeMod());
+            fleet.getStats().addTemporaryModMult(0.1f, MOD_ID_DETECT, desc, detectedMult,
+                    fleet.getStats().getDetectedRangeMod());
         }
     }
 }
