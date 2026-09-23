@@ -181,9 +181,12 @@ public class ColonyProximity {
 
         Set<LocationAPI> seenSystems = new HashSet<>();
         for (MarketAPI market : Global.getSector().getEconomy().getMarketsCopy()) {
-            // isPlayerOwned() rather than a Factions.PLAYER id check: with Nexerelin the player
-            // normally runs a custom faction id, and an id comparison misses all of those colonies.
-            if (!market.isPlayerOwned()) continue;
+            // Either flag is enough, matching Misc.getPlayerMarkets(true). They diverge in both
+            // directions: a colony the player governs under another faction (a commission, or
+            // Nexerelin's alignment) is player-owned but not player-faction, and a market handed
+            // to the player faction by script or console can be player-faction without the
+            // player-owned flag ever being set.
+            if (!market.isPlayerOwned() && !market.getFaction().isPlayerFaction()) continue;
 
             // getLocationInHyperspace() resolves to the containing location's position, so every
             // market in a system shares one point and this list stays short in practice.

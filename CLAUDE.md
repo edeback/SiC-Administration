@@ -81,7 +81,17 @@ colony/market stat application and its own persistence; the SiC plugin cannot re
 directly.
 
 Fleet-scoped skills (`SupplyRoutes`, `HyperspaceBuoys`, `HyperspaceSensors`) skip the vanilla
-layer entirely and just modify `FleetMemberAPI` stats from `advance()`.
+layer entirely and just modify `FleetMemberAPI` stats from `advance()`. They share one
+`ColonyProximity` cache, which is the only thing that walks the economy; `advance()` runs every
+frame (including while paused), so never scan markets from a skill directly.
+
+**Per-ship stat mods applied from `advance()` must be re-applied every frame.**
+`FleetMember.updateStats()` does not adjust the existing stats — it discards the object and
+builds a new one from hullmods and skills, dropping anything applied from outside that pipeline.
+It runs on refit, docking, officer changes and more. Skipping "unchanged" frames loses the mod
+the first time that happens. To keep per-frame re-application cheap, make the value stable (e.g.
+round it): `MutableStat.modifyMult` returns early when the source already holds that value.
+Fleet-level stats and character stats are not rebuilt this way.
 
 Class names in the CSVs, the `.skill` files, and `hull_mods.csv` are plain strings — nothing
 checks them at build time, so a rename that misses one fails only at runtime.
@@ -123,11 +133,18 @@ structured as one shared stamper plus one hook per production system:
   storage, which is exactly where a permamod survives.
 - `ProductionHooks` — registers both from `onGameLoad`, transiently.
 
-`com.fs.starfarer.api.impl.campaign.intel.misc.HackProductionReport` is a deliberate
-package-injection trick: `ProductionReportIntel` keeps its data in protected fields with no
-getters, so declaring a class in the game's own package gets package-level access to them
-without reflection. It lives at `src/sic_admin_xo/HackProductionReport.java` despite its package
-declaration — the `src` source root is flat, so javac does not care.
+`ProductionReportIntel` keeps its data in protected fields with no getters. `ProductionReportAccess`
+reads them through `MethodHandles.privateLookupIn(...).findGetter(...)`. Two things rule out the
+obvious alternatives:
+
+- **Declaring a class in the game's package does not work.** The JVM grants package access only
+  between classes that share the package name *and* the defining class loader, and mod jars are
+  always loaded by a different loader than `starfarer.api.jar`. An earlier version did exactly
+  this and threw `IllegalAccessError` at the first month-end with a production report.
+- **`java.lang.reflect` is blacklisted.** The game's script class loader refuses to load mod
+  classes that reference it (a handful of types like `InvocationTargetException` are
+  allow-listed). `java.lang.invoke` is not on the list, and `privateLookupIn` works because both
+  classes live in unnamed modules, which are open to everyone.
 
 ### Optional dependencies on other mods
 

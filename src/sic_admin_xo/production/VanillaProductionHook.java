@@ -5,7 +5,6 @@ import com.fs.starfarer.api.campaign.CargoAPI;
 import com.fs.starfarer.api.campaign.comm.IntelInfoPlugin;
 import com.fs.starfarer.api.campaign.listeners.EconomyTickListener;
 import com.fs.starfarer.api.fleet.FleetMemberAPI;
-import com.fs.starfarer.api.impl.campaign.intel.misc.HackProductionReport;
 import com.fs.starfarer.api.impl.campaign.intel.misc.ProductionReportIntel;
 
 import java.util.List;
@@ -31,7 +30,7 @@ public class VanillaProductionHook implements EconomyTickListener {
         for (IntelInfoPlugin plugin : reports) {
             ProductionReportIntel report = (ProductionReportIntel) plugin;
 
-            ProductionReportIntel.ProductionData data = HackProductionReport.getProductionData(report);
+            ProductionReportIntel.ProductionData data = ProductionReportAccess.getProductionData(report);
             if (data == null) continue;
 
             // Not getCargo(), which would add an empty entry to reports that never had one.
