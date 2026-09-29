@@ -48,11 +48,11 @@ The Admin XO is a logistics specialist with the following abilities:
 ---
 *(Must have 2 skills from above)*
 
-**Business Acumen**
+**Delegation**
 
-*Affects: governed colonies*
+*Affects: player*
 
->+25% income
+>You can personally administer an additional four colonies without penalty.
 
 **Entrenchment**
 
