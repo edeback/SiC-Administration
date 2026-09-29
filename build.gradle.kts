@@ -69,6 +69,7 @@ val packageIncludeExtensions = listOf(
 //would otherwise pull them in. Matched as Ant patterns against the project root.
 val packageExcludes = listOf(
     "CLAUDE.md", //Agent instructions, of no use to players.
+    "DEVELOPMENT.md", //Build and release instructions, of no use to players.
 )
 
 //Additional jars to include, like libraries you ship with your mod.

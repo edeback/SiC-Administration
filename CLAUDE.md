@@ -161,7 +161,8 @@ enabling the mod. `mod_info.json` should list only Second-in-Command.
 The built jar is **not** committed (`/jars/` is gitignored) and there is no release CI — a
 runner has no Starsector install, and neither the game API nor the mod jars the build compiles
 against are redistributable. Releases are built and published from a local checkout with
-`./gradlew packageMod` followed by `gh release create`; the README has the steps.
+`./gradlew packageMod` followed by `gh release create`; `DEVELOPMENT.md` has the steps. That file
+and `CLAUDE.md` are excluded from the zip via `packageExcludes`, so the README stays player-facing.
 
 `packageIncludes` / `packageIncludeExtensions` / `packageExcludes` in `build.gradle.kts` are the
 single definition of what goes in the zip. The zip's inner folder comes from the project
