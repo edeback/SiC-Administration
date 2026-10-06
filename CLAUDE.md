@@ -172,5 +172,6 @@ single definition of what goes in the zip. The zip's inner folder comes from the
 directory name, so it currently extracts as `SiC-Administration/`.
 
 Version bumps have to keep three things in agreement: `mod_info.json` (`version`),
-`sic_admin_xo.version` (`modVersion`, plus `directDownloadURL`, which pins both the release tag
-and the zip name), and the git tag passed to `gh release create`.
+`sic_admin_xo.version` (`modVersion`), and the git tag passed to `gh release create`.
+`directDownloadURL` uses GitHub's `releases/latest/download/` form, so it follows the newest
+release on its own but still pins the zip name — renaming `zipName` breaks it.

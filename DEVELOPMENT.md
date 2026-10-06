@@ -25,8 +25,9 @@ The mod jar is not committed, so releases are built and published from a local c
 than by CI. `packageMod` is the single source of truth for what goes in the zip - see
 `packageIncludes` in `build.gradle.kts`.
 
-1. Bump the version in `mod_info.json` and `sic_admin_xo.version`. They must match, and
-   `directDownloadURL` in the `.version` file has to point at the tag you are about to create.
+1. Bump the version in `mod_info.json` and `sic_admin_xo.version`. They must match.
+   `directDownloadURL` in the `.version` file points at `releases/latest/download/SiCAdminXO.zip`,
+   so it needs no change as long as the zip name stays the same.
 2. Build the zip:
 
    ```bash
