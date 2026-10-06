@@ -69,7 +69,10 @@ Every skill needs an entry in `data/config/secondInCommand/SCSkills.csv` (id pre
 `src/sic_admin_xo/skills/administration/`. `AptitudeAdministration.createSections()` then
 arranges those ids into the three unlock tiers shown in the officer UI, and the aptitude itself
 is declared in `SCAptitudes.csv` plus a matching `executive_officer_<aptitudeId>` post in
-`data/world/factions/default_ranks.json`.
+`data/world/factions/default_ranks.json`. Its category, `sc_cat_colony` ("Colony"), is defined
+by this mod in `SCCategories.csv`; SiC merges that file across mods. Categories only control
+exclusivity (two aptitudes sharing one can't be active together), so Admin currently conflicts
+with nothing.
 
 Skills whose effects apply to *colonies* additionally need a vanilla skill: a `.skill` file in
 `data/characters/skills/` and a row in `skill_data.csv`, both using id prefix **`sic_admin_`**

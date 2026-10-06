@@ -6,7 +6,7 @@ This adds an Administration XO to Second-in-Command. The intent is to provide a 
 
 ***Requires the Second-in-Command mod (if that wasn't obvious)***
 
-The Admin XO is a logistics specialist with the following abilities:
+The Admin XO belongs to its own "Colony" aptitude category rather than "Logistical", so it can be used alongside logistical aptitudes such as Starfaring or Scavenging. It has the following abilities:
 
 *Innate skill:*
 

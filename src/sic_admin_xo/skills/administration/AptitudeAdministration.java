@@ -10,7 +10,7 @@ public class AptitudeAdministration extends SCBaseAptitudePlugin {
 
     @Override
     public void addCodexDescription(TooltipMakerAPI tooltip) {
-        tooltip.addPara("Administration is an end-game logistical aptitude, only useful once you have a few colonies down" +
+        tooltip.addPara("Administration is an end-game colony aptitude, only useful once you have a few colonies down" +
                 " and excelling when you have many. It is focused on supporting those colonies and providing utility when you are near them.",
                 0f);
     }
