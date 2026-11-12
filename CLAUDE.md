@@ -9,15 +9,19 @@ A Starsector mod (`sic_admin_xo`, "SiC Admin XO") that adds an "Administration" 
 this repo provides one aptitude and its ten skills. The README lists the designed effect of
 every skill and is the reference for intended behaviour.
 
-The repo must sit inside a full Starsector install as `<Starsector>/mods/SiC-Administration`.
-`starsectorPath` in `build.gradle.kts` is `../../` and everything else keys off it: the game,
-its API, and every other installed mod are siblings under `../`. The mod also has to be in
-`mods/` for the game to load it at all.
+The repo sits in the modding workspace as `<workspace>/mods/SiC-Administration`. Two paths at
+the top of `build.gradle.kts` locate everything else. `starsectorPath` is `../../` (the
+workspace root) and finds `mods/`, where every other installed mod is a sibling under `../`, and
+`vmparams`. `starsectorInstallPath` is `$starsectorPath/Starsector 0.98.5a-RC4`, the game
+install itself (`jre/` and `starsector-core/`, so the API jars and source). The install lives in
+a versioned folder since the 0.98.5 update; after the next game update, change the folder name
+in `starsectorInstallPath`. In an ordinary install, where `mods/` is inside the game folder,
+both paths are the same. The mod also has to be in the game's `mods/` for the game to load it.
 
 ## Building
 
 Gradle, via the wrapper. The config knobs are the `val`s at the top of `build.gradle.kts`
-(`starsectorPath`, `jarName`, `zipName`, `modDependencies`, `packageIncludes`, `javaVersion`);
+(`starsectorPath`, `starsectorInstallPath`, `jarName`, `zipName`, `modDependencies`, `packageIncludes`, `javaVersion`);
 everything below the `/// BUILD PIPELINE` banner is machinery that rarely needs touching.
 
 ```bash
@@ -27,7 +31,10 @@ everything below the `/// BUILD PIPELINE` banner is machinery that rarely needs 
 The jar lands at `jars/SiCAdminXO.jar`, which `mod_info.json` points at. `runStarsector` and
 `runStarsectorNoLauncher` build and launch the real game; both parse `vmparams` for the JVM
 flags and classpath, so they follow the install rather than a frozen copy. The `.run/`
-configurations are thin IntelliJ wrappers around those two tasks.
+configurations are thin IntelliJ wrappers around those two tasks. Since the install moved into
+its versioned folder these tasks start the game without the workspace mods: `vmparams` gives
+the mods folder as `..\mods` relative to `starsector-core`, which is now a folder inside the
+install that doesn't exist. Test from the Desktop install instead (copy the mod folder there).
 
 **`./gradlew clean jar` as a single command fails.** `stageStarsectorApi()` and
 `stageModDependency()` write the staged API and mod-dependency jars into `build/` at
@@ -36,7 +43,7 @@ errors like `package com.fs.starfarer.api.campaign.econ does not exist`. Run the
 separate invocations.
 
 There are no tests (`tasks.test` is disabled). Verification means launching the game and
-reading `../../starsector-core/starsector.log`.
+reading `starsector-core/starsector.log` in the install the game was run from.
 
 ### How dependencies resolve
 
@@ -54,7 +61,7 @@ source file imports. They are leftovers from the template and could be dropped.
 
 ### Reading the game's source
 
-The base game is closed-source, but `../../starsector-core/starfarer.api.zip` contains the full
+The base game is closed-source, but `../../Starsector 0.98.5a-RC4/starsector-core/starfarer.api.zip` contains the full
 source of `starfarer.api.jar`, including the `impl` package — `CoreScript`, the intel classes,
 the industry implementations. Unzip and grep it before guessing at vanilla behaviour. For other
 mods, several ship source under `mods/<mod>/src` or `jars/src.rar`; where they don't,
@@ -136,8 +143,9 @@ structured as one shared stamper plus one hook per production system:
   storage, which is exactly where a permamod survives.
 - `ProductionHooks` — registers both from `onGameLoad`, transiently.
 
-`ProductionReportIntel` keeps its data in protected fields with no getters. `ProductionReportAccess`
-reads them through `MethodHandles.privateLookupIn(...).findGetter(...)`. Two things rule out the
+`ProductionReportIntel` kept its data in protected fields with no getters in 0.98a (0.98.5 added
+`getData()`, `getGatheringPoint()` and others, plus a `CustomProductionListener`, so this could
+now be simplified). `ProductionReportAccess` reads them through `MethodHandles.privateLookupIn(...).findGetter(...)`. Two things rule out the
 obvious alternatives:
 
 - **Declaring a class in the game's package does not work.** The JVM grants package access only

@@ -6,6 +6,10 @@ import java.util.zip.ZipFile
 //If you do not place the project in to your mods folder, replace this with the path to Starsectors root folder.
 val starsectorPath= "../../";
 
+//The game install itself (jre and starsector-core). In this workspace it sits in a versioned folder next to mods/,
+//so it is separate from starsectorPath, which still locates mods/ and vmparams. After a game update, change the folder name here.
+val starsectorInstallPath = "$starsectorPath/Starsector 0.98.5a-RC4"
+
 //The name of the file that the code is compiled to. This will automatically place in to the /jars folder.
 //Make sure that the "jars" entry in your mod_info.json matches this.
 val jarName = "SiCAdminXO.jar"
@@ -410,10 +414,10 @@ data class StarsectorLayout(
 )
 
 //Resolves all three paths for the current OS. Starsector ships a different folder structure on each platform.
-fun starsectorLayout(): StarsectorLayout = file(starsectorPath).let { root ->
+fun starsectorLayout(): StarsectorLayout = file(starsectorInstallPath).let { root ->
     when (currentPlatform()) {
         StarsectorPlatform.WINDOWS -> StarsectorLayout(
-            launcherFile = File(root, "vmparams"),
+            launcherFile = File(file(starsectorPath), "vmparams"),
             javaExecutable = File(root, "jre/bin/java.exe"),
             gameWorkingDir = File(root, "starsector-core"),
         )
@@ -469,7 +473,7 @@ fun stageStarsectorApi(): File {
 
     require(srcJar.exists()) {
         "Starsector API jar not found at ${srcJar.absolutePath}. " +
-                "Check starsectorPath at the top of this build script."
+                "Check starsectorInstallPath at the top of this build script."
     }
 
     //Fast path: staged files match (or post-date) their sources, so we can return without doing anything.
